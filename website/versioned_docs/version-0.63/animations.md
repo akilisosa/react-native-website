@@ -700,7 +700,13 @@ You can see the native driver in action by running the [RNTester app](https://gi
 
 #### Caveats
 
-Not everything you can do with `Animated` is currently supported by the native driver. The main limitation is that you can only animate non-layout properties: things like `transform` and `opacity` will work, but Flexbox and position properties will not. When using `Animated.event`, it will only work with direct events and not bubbling events. This means it does not work with `PanResponder` but does work with things like `ScrollView#onScroll`.
+Not everything you can do with `Animated` is currently supported by the native driver. The main limitation is that you can only animate non-layout properties: things like `transform` and `opacity` will work, but Flexbox and position properties will not. When using `Animated.event`, it will only work with direct events and not bubbling events. This means it does not work with `PanResponder` but does work with things like `ScrollView#onScroll`. 
+
+You may find it useful to declare your styles in a list (when working with one attribute) to work with all platforms ie: 
+
+```
+     <Animated.View style={[{ opacity: fadeSignAnim }] } >...</Animated.View>
+```
 
 When an animation is running, it can prevent `VirtualizedList` components from rendering more rows. If you need to run a long or looping animation while the user is scrolling through a list, you can use `isInteraction: false` in your animation's config to prevent this issue.
 
